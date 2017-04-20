@@ -5,7 +5,7 @@ $current_ts = time(); // текущая метка времени
 // запишите сюда дату выполнения задачи в формате дд.мм.гггг
 $date_deadline = date("d.m.Y", $task_deadline_ts);
 // в эту переменную запишите кол-во дней до даты задачи
-$days_until_deadline = floor( ($task_deadline_ts - $current_ts) / 86400);
+$days_until_deadline = floor(($task_deadline_ts - $current_ts) / 86400);
 ?>
 <!DOCTYPE html>
 <html lang="en">
