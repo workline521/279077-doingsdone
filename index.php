@@ -114,18 +114,21 @@ $show_complete_tasks = rand(0, 1);
                 </div>
                 <table class="tasks">
                     <!--показывать эту строку, если переменная равна единице-->
-                    <?=($show_complete_tasks) ? '<tr class="tasks__item task task--completed">
-                        <td class="task__select">
+                    <?php if ($show_complete_tasks) {
+                  echo '<tr class="tasks__item task task--completed">
+                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden" type="checkbox" checked>
                                 <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
                             </label>
-                        </td>
-                        <td class="task__date">10.04.2017</td>
+                         </td>
+                         <td class="task__date">10.04.2017</td>
 
-                        <td class="task__controls">
-                        </td>
-                    </tr>' : '' ?>
+                         <td class="task__controls">
+                         </td>
+                        </tr>';
+                      }
+                      else {} ?>
 
                     <tr class="tasks__item task">
                         <td class="task__select">
