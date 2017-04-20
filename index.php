@@ -2,12 +2,10 @@
 $days = rand(0, 3);
 $task_deadline_ts = strtotime("+" . $days . " day"); // метка времени даты выполнения задачи
 $current_ts = time(); // текущая метка времени
-$current_day = date("d.m.Y", $current_ts);
 // запишите сюда дату выполнения задачи в формате дд.мм.гггг
 $date_deadline = date("d.m.Y", $task_deadline_ts);
-
 // в эту переменную запишите кол-во дней до даты задачи
-$days_until_deadline = $date_deadline - $current_day ;
+$days_until_deadline = floor( ($task_deadline_ts - $current_ts) / 86400);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,9 +133,7 @@ $days_until_deadline = $date_deadline - $current_day ;
                     </tr>
 
                     <!--добавьте здесь класс "task--important" если эта задача просрочена-->
-                    <tr  class="tasks__item task
-                    <?= ($days_until_deadline <= 0) ?  'task--important' : '' ?>
-
+                    <tr  class="tasks__item task <?= ($days_until_deadline <= 0) ?  'task--important' : '' ?>
                     ">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
