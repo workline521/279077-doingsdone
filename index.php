@@ -100,7 +100,7 @@ function calculateTasks(array $task_list, string $project): int
                         <?php foreach ($projects as $value => $project): ?>
                         <li class="main-navigation__list-item <?= ($value == 0) ? 'main-navigation__list-item--active' : ''?> ">
                                 <a class="main-navigation__list-item-link" href="#"><?= $project ?></a>
-                            <span class="main-navigation__list-item-count"><?=(calculateTasks($task_list, $project)); ?></span>
+                            <span class="main-navigation__list-item-count"><?= calculateTasks($task_list, $project); ?></span>
                         </li>
                         <?php endforeach ?>
                     </ul>
