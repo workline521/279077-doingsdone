@@ -37,6 +37,22 @@ $pizza = [
     'completed' => false
 ];
 $task_list = [$interview, $test, $finished_task, $meeting, $catfood, $pizza];
+
+function calculateTasks(array $task_list, string $project): int
+{
+    if ($project == 'Все') {
+        return count($task_list);
+    }
+
+    $count = 0;
+    foreach ($task_list as $task_value) {
+        if ($task_value['category'] == $project) {
+            $count++;
+        }
+    }
+
+    return $count;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +100,7 @@ $task_list = [$interview, $test, $finished_task, $meeting, $catfood, $pizza];
                         <?php foreach ($projects as $value => $project): ?>
                         <li class="main-navigation__list-item <?= ($value == 0) ? 'main-navigation__list-item--active' : ''?> ">
                                 <a class="main-navigation__list-item-link" href="#"><?= $project ?></a>
-                                <span class="main-navigation__list-item-count"></span>
+                            <span class="main-navigation__list-item-count"><?= calculateTasks($task_list, $project); ?></span>
                         </li>
                         <?php endforeach ?>
                     </ul>
