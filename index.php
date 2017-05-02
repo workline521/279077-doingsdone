@@ -38,7 +38,28 @@ $pizza = [
     'completed' => false
 ];
 $task_list = [$interview, $test, $finished_task, $meeting, $catfood, $pizza];
+$filtered_tasks = [];
 
+if (isset($_GET['project_id'])) {
+    $projectId = (int) $_GET['project_id'];
+
+    if ($projectId == 0) {
+        $filtered_tasks = $task_list;
+    } else {
+        if (!isset($projects[$projectId])) {
+            header("HTTP/1.1 404 Not Found");
+            die('Страница не найдена');
+        }
+
+        $project = $projects[$projectId];
+
+        foreach ($task_list as $task) {
+            if ($task['category'] == $project) {
+                $filtered_tasks[] = $task;
+            }
+        }
+    }
+}
 include('functions.php');
 
 ?>
@@ -60,7 +81,7 @@ include('functions.php');
 
         <?= includeTemplate("templates/header.php", []); ?>
 
-        <?= includeTemplate("templates/main.php", ['projects' => $projects, 'task_list' => $task_list]); ?>
+        <?= includeTemplate("templates/main.php", ['projects' => $projects, 'task_list' => $task_list, 'filtered_tasks' => $filtered_tasks]); ?>
 
     </div>
 </div>
