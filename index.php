@@ -1,4 +1,47 @@
-<?php include('functions.php'); ?>
+<?php
+
+$projects = ['Все', 'Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
+$interview = [
+    'task' => 'Собеседование в IT компании',
+    'deadline' => '01.06.2017',
+    'category' => 'Работа',
+    'completed' => false
+];
+$test = [
+    'task' => 'Выполнить тестовое задание',
+    'deadline' => '25.05.2017',
+    'category' => 'Работа',
+    'completed' => false
+];
+$finished_task = [
+    'task' => 'Сделать задание первого раздела',
+    'deadline' => '21.04.2017',
+    'category' => 'Учеба',
+    'completed' => true
+];
+$meeting = [
+    'task' => 'Встреча с другом',
+    'deadline' => '22.04.2017',
+    'category' => 'Входящие',
+    'completed' => false
+];
+$catfood = [
+    'task' => 'Купить корм для кота',
+    'deadline' => null,
+    'category' => 'Домашние дела',
+    'completed' => false
+];
+$pizza = [
+    'task' => 'Заказать пиццу',
+    'deadline' => null,
+    'category' => 'Домашние дела',
+    'completed' => false
+];
+$task_list = [$interview, $test, $finished_task, $meeting, $catfood, $pizza];
+
+include('functions.php');
+
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -17,7 +60,7 @@
 
         <?= includeTemplate("templates/header.php", []); ?>
 
-        <?= includeTemplate("templates/main.php", ['projects' => '$projects', 'task_list' => '$task_list']); ?>
+        <?= includeTemplate("templates/main.php", ['projects' => $projects, 'task_list' => $task_list]); ?>
 
     </div>
 </div>

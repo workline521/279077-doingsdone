@@ -1,68 +1,13 @@
-<?php
-$projects = ['Все', 'Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
-$interview = [
-    'task' => 'Собеседование в IT компании',
-    'deadline' => '01.06.2017',
-    'category' => 'Работа',
-    'completed' => false
-];
-$test = [
-    'task' => 'Выполнить тестовое задание',
-    'deadline' => '25.05.2017',
-    'category' => 'Работа',
-    'completed' => false
-];
-$finished_task = [
-    'task' => 'Сделать задание первого раздела',
-    'deadline' => '21.04.2017',
-    'category' => 'Учеба',
-    'completed' => true
-];
-$meeting = [
-    'task' => 'Встреча с другом',
-    'deadline' => '22.04.2017',
-    'category' => 'Входящие',
-    'completed' => false
-];
-$catfood = [
-    'task' => 'Купить корм для кота',
-    'deadline' => null,
-    'category' => 'Домашние дела',
-    'completed' => false
-];
-$pizza = [
-    'task' => 'Заказать пиццу',
-    'deadline' => null,
-    'category' => 'Домашние дела',
-    'completed' => false
-];
-$task_list = [$interview, $test, $finished_task, $meeting, $catfood, $pizza];
-function calculateTasks(array $task_list, string $project): int
-{
-    if ($project == 'Все') {
-        return count($task_list);
-    }
-
-    $count = 0;
-    foreach ($task_list as $task_value) {
-        if ($task_value['category'] == $project) {
-            $count++;
-        }
-    }
-
-    return $count;
-}
-?>
 <div class="content">
     <section class="content__side">
         <h2 class="content__side-heading">Проекты</h2>
 
         <nav class="main-navigation">
             <ul class="main-navigation__list">
-                <?php foreach ($projects as $value => $project): ?>
+                <?php foreach ($data['projects'] as $value => $project): ?>
                     <li class="main-navigation__list-item <?= ($value == 0) ? 'main-navigation__list-item--active' : ''?> ">
                         <a class="main-navigation__list-item-link" href="#"><?= htmlspecialchars($project) ?></a>
-                        <span class="main-navigation__list-item-count"><?= calculateTasks($task_list, $project); ?></span>
+                        <span class="main-navigation__list-item-count"><?= calculateTasks($data['task_list'], $project); ?></span>
                     </li>
                 <?php endforeach ?>
             </ul>
@@ -109,7 +54,7 @@ function calculateTasks(array $task_list, string $project): int
     </div>
 
     <table class="tasks">
-        <?php foreach ($task_list as $task_value): ?>
+        <?php foreach ($data['task_list'] as $task_value): ?>
             <tr  class="tasks__item task <?= ($task_value['completed'] == true) ? 'task--completed' : '' ?> ">
                 <td class="task__select">
                     <label class="checkbox task__checkbox">
